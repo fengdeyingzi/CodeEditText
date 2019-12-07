@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.0"
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.a4455jkjh.text"
@@ -10,6 +9,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -20,6 +20,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':formatter')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":formatter")
 }

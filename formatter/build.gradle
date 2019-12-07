@@ -1,15 +1,14 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.0"
+    compileSdkVersion 28
 
     defaultConfig {
-        applicationId "org.eclipse.jdt.core.formatter"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -20,6 +19,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':dom')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    api project(path: ':dom')
+    implementation files('libs\\ecj.jar')
 }

@@ -2,6 +2,7 @@ package com.a4455jkjh.text;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.EditorInfo;
@@ -12,7 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 import org.eclipse.jface.text.IRegion;
 
 public class EditText extends TextView {
-  UndoManager fUndoManager;
+//  UndoManager fUndoManager;
+  private static final String TAG = "EditText";
   private boolean isShiftPressed;
   public EditText(Context ctx) {
     super(ctx);
@@ -29,8 +31,13 @@ public class EditText extends TextView {
     setFocusable(true);
     setFocusableInTouchMode(true);
     requestFocus();
-    fUndoManager = new UndoManager(500);
-    fUndoManager.connect(this);
+//    fUndoManager = new UndoManager(500);
+    try {
+//      fUndoManager.connect(this);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Log.e(TAG, "init: "+e.toString());
+    }
   }
 
   @Override
@@ -48,7 +55,7 @@ public class EditText extends TextView {
 
   @Override
   public void onTouchDown(float x, float y) {
-    fUndoManager.commit();
+//    fUndoManager.commit();
     super.onTouchDown(x, y);
   }
   public void showIME(boolean show) {
@@ -180,7 +187,7 @@ public class EditText extends TextView {
   }
 
   private void moveCaretDown() {
-    fUndoManager.commit();
+//    fUndoManager.commit();
     int line = caret.line + 1;
     if (line == fDocumentAdapter.getLineCount())
       return;
@@ -193,7 +200,7 @@ public class EditText extends TextView {
   }
 
   private void moveCaretUp() {
-    fUndoManager.commit();
+//    fUndoManager.commit();
     int line = caret.line;
     if (line == 0)
       return;
@@ -278,14 +285,14 @@ public class EditText extends TextView {
 
     @Override
     public boolean beginBatchEdit() {
-      fEditText.fUndoManager.beginCompoundChange();
+//      fEditText.fUndoManager.beginCompoundChange();
       isBatchEdit = true;
       return super.beginBatchEdit();
     }
 
     @Override
     public boolean endBatchEdit() {
-      fEditText.fUndoManager.endCompoundChange();
+//      fEditText.fUndoManager.endCompoundChange();
       isBatchEdit = false;
       fEditText.highlight();
       return super.endBatchEdit();

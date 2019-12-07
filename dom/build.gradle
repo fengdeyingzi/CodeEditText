@@ -1,13 +1,12 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.0"
+    compileSdkVersion 28
+//    buildToolsVersion "21.1.0"
 
     defaultConfig {
-        applicationId "org.eclipse.jdt.core.dom"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -20,5 +19,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files('libs\\ecj.jar')
+
 }
